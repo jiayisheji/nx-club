@@ -45,7 +45,7 @@ We recommend renaming your 'git init' file and running the generator again with 
     Reflect.deleteProperty(packageVersion, 'lint-staged');
   }
 
-  const installTask = updateDependencies(host);
+  const installTask = updateDependencies(host, packageVersion);
 
   // if .git exist setting enable git hooks
   if (isGit) {
@@ -68,12 +68,15 @@ We recommend renaming your 'git init' file and running the generator again with 
 export default initGenerator;
 
 /** Adds CZ and shared configs to the devDependencies of the package.json if not present */
-function updateDependencies(host: Tree) {
+function updateDependencies(
+  host: Tree,
+  packages: Record<string, string>
+) {
   const packageJson = readJson(host, 'package.json');
 
   const devDependencies: { [index: string]: string } = {};
 
-  for (const [p, v] of Object.entries<string>(packageVersion)) {
+  for (const [p, v] of Object.entries<string>(packages)) {
     if (!packageJson.dependencies[p]) {
       devDependencies[p] = v;
     }

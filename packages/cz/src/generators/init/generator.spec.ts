@@ -80,7 +80,8 @@ describe('cz generator init', () => {
       await generator(tree, defaultOptions);
 
       const packageJson = readJson(tree, 'package.json');
-      expect(packageJson.dependencies['lint-staged']).toBe(
+
+      expect(packageJson.devDependencies['lint-staged']).toBe(
         packageVersion['lint-staged']
       );
 
@@ -98,7 +99,7 @@ describe('cz generator init', () => {
 
       await generator(tree, defaultOptions);
       const packageJson = readJson(tree, 'package.json');
-      expect(packageJson.dependencies['lint-staged']).toBeUndefined();
+      expect(packageJson.devDependencies['lint-staged']).toBeUndefined();
     });
   });
 
