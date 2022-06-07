@@ -1,0 +1,19 @@
+{
+    "packagesScope": [
+    ],
+    "workspaceScope": [
+      "workspace",
+      "tools-generators",
+      "tools-scripts",
+      "docs-content",
+      "docs-site",
+      "add-plugin",
+      "remove-plugin",
+      "readme",
+      "ci",
+      "examples",
+      "wip",
+      "plugin-executors",
+      "plugin-generators"
+    ]
+  }
