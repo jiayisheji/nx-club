@@ -1,0 +1,79 @@
+name: CZ
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+    paths-ignore:
+      - '**/*.md'
+
+jobs:
+  build:
+    name: Build, Lint and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Use Node.js LTS 14.15
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          check-latest: true
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        if: always()
+        run: npx nx lint cz
+
+      - name: Test
+        if: always()
+        run: npx nx test cz
+
+      - name: Build
+        if: always()
+        run: npx nx build cz
+
+  e2e:
+    name: E2E Matrix - ${{ matrix.os }} (Node ${{ matrix.node-version }})
+    runs-on: ${{ matrix.os }}
+    needs: build
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+        node-version:
+          - 14
+          - 16
+          - 18
+      fail-fast: false
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+
+      - name: E2E
+        run: npx nx affected --target=e2e --skip-nx-cache

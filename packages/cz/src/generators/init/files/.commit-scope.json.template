@@ -1,0 +1,15 @@
+{   <% if (isPlugin) { %>
+    "packagesScope": <%- JSON.stringify(packages, null, 4) %>,<% } else { %>
+    "appsScope": <%- JSON.stringify(apps, null, 4) %>,
+    "libsScope": <%- JSON.stringify(libs, null, 4) %>,<% } %>
+    "workspaceScope": [
+      "workspace",
+      "tools-generators",
+      "tools-scripts",
+      "docs",
+      "readme",
+      "ci",
+      "examples",
+      "wip"
+    ]
+}
