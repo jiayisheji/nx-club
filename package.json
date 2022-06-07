@@ -1,0 +1,70 @@
+{
+  "name": "nx-club",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test",
+    "lint": "nx workspace-lint && nx lint",
+    "e2e": "nx e2e",
+    "affected": "nx affected",
+    "format": "nx format:write",
+    "update": "nx migrate latest",
+    "workspace-generator": "nx workspace-generator",
+    "dep-graph": "nx dep-graph",
+    "cli": "ts-node --transpile-only ./scripts/cli.ts",
+    "commit": "git-cz",
+    "postinstall": "is-ci || husky install",
+    "release": "standard-version --no-verify",
+    "release:beta": "standard-version --no-verify --prerelease beta"
+  },
+  "engines": {
+    "node": "^12.13.0 || ^14.15.0 || ^16.13.0 || >= 17.0.0"
+  },
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@nrwl/cli": "14.0.3",
+    "@nrwl/devkit": "14.0.3",
+    "@nrwl/eslint-plugin-nx": "14.0.3",
+    "@nrwl/jest": "14.0.3",
+    "@nrwl/js": "14.0.3",
+    "@nrwl/linter": "14.0.3",
+    "@nrwl/nx-plugin": "^14.0.3",
+    "@nrwl/workspace": "14.0.3",
+    "@types/jest": "27.4.1",
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "~5.18.0",
+    "@typescript-eslint/parser": "~5.18.0",
+    "cac": "^6.7.12",
+    "commitizen": "^4.2.4",
+    "commitlint-config-cz": "^0.13.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "eslint": "~8.12.0",
+    "eslint-config-prettier": "8.1.0",
+    "fs-extra": "^10.1.0",
+    "git-cz": "^4.8.0",
+    "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
+    "jest": "27.5.1",
+    "lint-staged": "^12.4.1",
+    "nx": "14.0.3",
+    "prettier": "^2.5.1",
+    "standard-version": "^9.3.2",
+    "ts-jest": "27.1.4",
+    "ts-node": "9.1.1",
+    "tslib": "^2.0.0",
+    "typescript": "~4.6.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
+}
