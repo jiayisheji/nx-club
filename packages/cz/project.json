@@ -1,0 +1,56 @@
+{
+  "root": "packages/cz",
+  "sourceRoot": "packages/cz/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/cz",
+        "main": "packages/cz/src/index.ts",
+        "tsConfig": "packages/cz/tsconfig.lib.json",
+        "packageJson": "packages/cz/package.json",
+        "assets": [
+          "LICENSE",
+          "packages/cz/README.md",
+          {
+            "input": "./packages/cz/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/cz/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/cz",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/cz",
+            "glob": "migrations.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/cz/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/cz"],
+      "options": {
+        "jestConfig": "packages/cz/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

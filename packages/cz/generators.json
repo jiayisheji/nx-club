@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "cz",
+  "version": "0.0.1",
+  "generators": {
+  },
+  "schematics": {
+  }
+}

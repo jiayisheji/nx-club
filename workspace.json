@@ -1,5 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "cz": "packages/cz",
+    "cz-e2e": "e2e/cz-e2e"
   }
 }
