@@ -43,9 +43,9 @@ describe('cz e2e', () => {
       expect(versionRc.scripts.posttag).toBe('git push --follow-tags origin master');
 
       const commitScope = readJson('.commit-scope.json');
-      expect(commitScope.appsScope.length).toHaveLength(0);
-      expect(commitScope.libsScope.length).toHaveLength(0);
-      expect(commitScope.workspaceScope.length).toHaveLength(8);
+      expect(commitScope.appsScope.length).toBe(0);
+      expect(commitScope.libsScope.length).toBe(0);
+      expect(commitScope.workspaceScope.length).toBe(8);
 
       const commitLint = readFile('commitlint.config.js');
 

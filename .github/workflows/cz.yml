@@ -2,16 +2,15 @@ name: CZ
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
-    tags:
-      - v*
+    types:
+      - opened
+      - closed
     paths-ignore:
       - '**/*.md'
 
 jobs:
   build:
+    if:  startsWith(github.head_ref, 'feat/cz')
     name: Build, Lint and Test
     runs-on: ubuntu-latest
     steps:
@@ -41,6 +40,7 @@ jobs:
         run: npx nx build cz
 
   e2e:
+    if:  startsWith(github.head_ref, 'feat/cz')
     name: E2E Matrix - ${{ matrix.os }} (Node ${{ matrix.node-version }})
     runs-on: ${{ matrix.os }}
     needs: build
@@ -77,3 +77,11 @@ jobs:
 
       - name: E2E
         run: npx nx affected --target=e2e --skip-nx-cache
+
+  publish:
+    if: github.event.pull_request.merged == true
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo The PR was merged
