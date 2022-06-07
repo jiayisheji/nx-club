@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-club/cz": ["packages/cz/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

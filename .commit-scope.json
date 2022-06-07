@@ -1,5 +1,6 @@
 {
     "packagesScope": [
+      "cz"
     ],
     "workspaceScope": [
       "workspace",

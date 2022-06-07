@@ -1,0 +1,15 @@
+const path = require('path');
+const cwd = process.cwd();
+
+const relative = (file) => path.relative(cwd, file);
+
+module.exports = {
+  '{apps,libs}/**/*.{ts,js,json,md}': (files) => {
+    const filesList = files.map(relative).join(',');
+    return [
+      `npx nx affected:lint --parallel --fix --files=${filesList}`,
+      `npx nx format:write --files=${filesList}`,
+      `git add ${files.join(' ')}`,
+    ];
+  }
+};

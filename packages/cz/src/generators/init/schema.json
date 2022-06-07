@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "NxCz",
+  "title": "Add CZ configuration and dependencies to the workspace",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "language": {
+      "type": "string",
+      "description": "Select the prompt language",
+      "enum": ["cn", "en"],
+      "default": "cn"
+    },
+    "workspaceType": {
+      "type": "string",
+      "description": "Select the prompt workspace type",
+      "enum": ["application", "plugin"],
+      "default": "application"
+    },
+    "lintStaged": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": true
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": []
+}
